@@ -182,21 +182,21 @@ class Timer extends React.Component {
                 <h2 id="time-left">
                   {toMinutes_Seconds(this.state.timerInit)}
                 </h2>
-                <div className='buttons'>
+                <section className='buttons'>
                   <button id="start_stop" onClick={this.startTimer}>
                     <i id="startbtn" className="fa-solid fa-play"></i>
                   </button>
                   <button id="reset" onClick={this.handleReset}>
                     <i className="fa-solid fa-arrows-rotate"></i>
                   </button>
-                </div>
+                </section>
               </div>
             </div>
           </section>
-          <div className="controls">
-             <div className="break-container">
+          <section className="controls">
+             <section className="break-container">
             <h3 id="break-label">Break length</h3>
-            <div className="button-container">
+            <section className="button-container">
               <button id="break-increment" onClick={this.incrementBreak}>
                 <i className="fa-solid fa-arrow-up"></i>
               </button>
@@ -204,12 +204,12 @@ class Timer extends React.Component {
               <button id="break-decrement" onClick={this.decrementBreak}>
                 <i className="fa-solid fa-arrow-down"></i>
               </button>
-              <div></div>
-            </div>
-          </div>
-          <div className="session-container">
+              
+            </section>
+          </section>
+          <section className="session-container">
             <h3 id="session-label">Session length</h3>
-            <div className="button-container">
+            <section className="button-container">
               <button id="session-increment" onClick={this.incrementSession}>
                 <i className="fa-solid fa-arrow-up"></i>
               </button>
@@ -217,10 +217,10 @@ class Timer extends React.Component {
               <button id="session-decrement" onClick={this.decrementSession}>
                 <i className="fa-solid fa-arrow-down"></i>
               </button>
-            </div>
-            <div></div>
-          </div>
-          </div>
+            </section>
+           
+          </section>
+          </section>
         </main>
       </div>
     );
