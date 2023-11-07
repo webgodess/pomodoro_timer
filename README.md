@@ -31,7 +31,7 @@ The app is fully functioning and meets all the standard Pomodoro timer requireme
 
 ## Usage
 
-The app is hosted on GitHub Pages here: [https://githubusername.github.io/pomodoro-clock ↗](https://githubusername.github.io/pomodoro-clock)
+The app is hosted on GitHub Pages here: [https://githubusername.github.io/pomodoro_timer ↗](https://webgodess.github.io/pomodoro_timer/)
 
 Simply visit that URL in the browser to use the timer.
 
