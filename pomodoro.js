@@ -1,9 +1,10 @@
 let x = null;
-let AddMinutesToDate = (date, minutes) => {
+
+const AddMinutesToDate = (date, minutes) => {
   return new Date(date.getTime() + minutes);
 };
-let isPaused = false;
-let toMinutes_Seconds = (ms) => {
+let TimerPaused = false;
+const toMinutes_Seconds = (ms) => {
   let minutes = Math.floor(ms / 60000);
   minutes < 10 ? (minutes = "0" + minutes) : "";
   let seconds = Math.round((ms % 60000) / 1000);
@@ -11,6 +12,7 @@ let toMinutes_Seconds = (ms) => {
   let result = minutes + ":" + seconds;
   return result;
 };
+
 class Timer extends React.Component {
   constructor(props) {
     super(props);
@@ -23,6 +25,10 @@ class Timer extends React.Component {
       timerState: "",
     };
 
+    this.playbtnRef = React.createRef();
+    this.audioRef = React.createRef();
+    this.timeLeftref = React.createRef();
+
     this.incrementBreak = this.incrementBreak.bind(this);
     this.decrementBreak = this.decrementBreak.bind(this);
     this.incrementSession = this.incrementSession.bind(this);
@@ -32,6 +38,14 @@ class Timer extends React.Component {
     this.countDown = this.countDown.bind(this);
     this.startTimer = this.startTimer.bind(this);
     this.controlTimer = this.controlTimer.bind(this);
+  }
+
+  audioPlay() {
+    this.audioRef.current.play();
+  }
+
+  audioPause() {
+    this.audioRef.current.pause();
   }
 
   incrementBreak() {
@@ -45,6 +59,8 @@ class Timer extends React.Component {
           return { timerInit: state.break * 60000 };
         });
       }
+    } else {
+      console.log("the maximum amount of time is 60 minutes");
     }
   }
   decrementBreak() {
@@ -53,6 +69,8 @@ class Timer extends React.Component {
       this.setState((state) => ({
         break: state.break - 1,
       }));
+    } else {
+      console.log("timer can't be less than a minute");
     }
     if (this.state.timerType === "Break") {
       this.setState((state) => {
@@ -62,6 +80,7 @@ class Timer extends React.Component {
   }
   incrementSession() {
     let i = this.state.session;
+
     if (i < 60) {
       this.setState((state) => {
         return { session: state.session + 1 };
@@ -71,6 +90,8 @@ class Timer extends React.Component {
           return { timerInit: state.session * 60000 };
         });
       }
+    } else {
+      console.log("the maximum amount of time is 60 minutes");
     }
   }
   decrementSession() {
@@ -79,6 +100,8 @@ class Timer extends React.Component {
       this.setState((state) => {
         return { session: state.session - 1 };
       });
+    } else {
+      console.log("timer can't be less than a minute");
     }
     if (this.state.timerType === "Session") {
       this.setState((state) => {
@@ -96,30 +119,44 @@ class Timer extends React.Component {
       intervalId: "",
       timerType: "Session",
     }));
-    document.getElementById("beep").pause();
-    document.getElementById("beep").currentTime = 0;
-    let playbtn = document.getElementById("startbtn");
-    playbtn.classList.remove("fa-pause");
-    playbtn.classList.add("fa-play");
+    this.audioPause();
+    this.audioRef.current.currentTime = 0;
+    this.playbtnRef.current.classList.remove("fa-pause");
+    this.playbtnRef.current.classList.add("fa-play");
   }
+
+  setBreak() {
+    this.setState((state) => {
+      return { timerInit: state.break * 60000, timerType: "Break" };
+    });
+  }
+
+  setSession() {
+    this.setState((state) => {
+      return { timerInit: state.session * 60000, timerType: "Session" };
+    });
+  }
+
   sessionTimer() {
     if (this.state.timerType === "Session") {
-      this.setState((state) => {
-        return { timerInit: state.break * 60000, timerType: "Break" };
-      });
-      x = setInterval(() => {
-        this.countDown(this.state.timerInit);
-      }, 1000);
+      this.setBreak();
+      this.startCountDown();
+
       this.setState({ intervalId: x });
     } else {
-      this.setState((state) => {
-        return { timerInit: state.session * 60000, timerType: "Session" };
-      });
-      x = setInterval(() => {
-        this.countDown(this.state.timerInit);
-      }, 1000);
-      this.setState({ intervalId: x });
+      this.setSession();
+      this.startCountDown();
     }
+  }
+
+  audioPause() {
+    this.playbtnRef.current.className = "fa-solid fa-pause";
+    TimerPaused = true;
+  }
+
+  audioPlay() {
+    this.playbtnRef.current.className = "fa-solid fa-play";
+    TimerPaused = false;
   }
 
   countDown = () => {
@@ -129,35 +166,30 @@ class Timer extends React.Component {
 
     if (this.state.timerInit === 0) {
       clearInterval(x);
-      document.getElementById("time-left").innerHTML = "00:00";
-      document.getElementById("beep").play();
+      this.timeLeftref.current.innerHTML = "00:00";
+      this.audioPlay();
       setTimeout(this.sessionTimer, 5000);
     }
   };
 
-  controlTimer() {
-    let playbtn = document.getElementById("startbtn");
-    if (x === null) {
-      x = setInterval(() => {
-        this.countDown(this.state.timerInit);
-      }, 1000);
-      this.setState({ intervalId: x });
-      playbtn.className = "fa-solid fa-pause";
-      isPaused = true;
-    } else {
-      if (isPaused) {
-        clearInterval(x);
-        console.log("paused");
-        playbtn.className = "fa-solid fa-play";
+  startCountDown() {
+    x = setInterval(() => {
+      this.countDown(this.state.timerInit);
+    }, 1000);
+    this.setState({ intervalId: x });
+  }
 
-        isPaused = false;
+  controlTimer() {
+    if (x === null) {
+      this.startCountDown();
+      this.audioPause();
+    } else {
+      if (TimerPaused) {
+        clearInterval(x);
+        this.audioPlay();
       } else {
-        x = setInterval(() => {
-          this.countDown(this.state.timerInit);
-        }, 1000);
-        this.setState({ intervalId: x });
-        playbtn.className = "fa-solid fa-pause";
-        isPaused = true;
+        this.startCountDown;
+        this.audioPause();
       }
     }
   }
@@ -175,12 +207,16 @@ class Timer extends React.Component {
             <div>
               <h2 id="timer-label">{this.state.timerType}</h2>
               <div>
-                <h2 id="time-left">
+                <h2 id="time-left" ref={this.timeLeftref}>
                   {toMinutes_Seconds(this.state.timerInit)}
                 </h2>
                 <section className="buttons">
                   <button id="start_stop" onClick={this.startTimer}>
-                    <i id="startbtn" className="fa-solid fa-play"></i>
+                    <i
+                      id="startbtn"
+                      ref={this.playbtnRef}
+                      className="fa-solid fa-play"
+                    ></i>
                   </button>
                   <button id="reset" onClick={this.handleReset}>
                     <i className="fa-solid fa-arrows-rotate"></i>
@@ -214,6 +250,12 @@ class Timer extends React.Component {
                 </button>
               </section>
             </section>
+            <audio
+              preload="auto"
+              src="./assets/BeepSound.wav"
+              id="beep"
+              ref={this.audioRef}
+            ></audio>
           </section>
         </main>
       </div>
