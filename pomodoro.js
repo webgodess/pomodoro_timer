@@ -20,7 +20,7 @@ class Timer extends React.Component {
       timerInit: 1500000,
       intervalId: "",
       timerType: "Session",
-      timerState: ""
+      timerState: "",
     };
 
     this.incrementBreak = this.incrementBreak.bind(this);
@@ -51,7 +51,7 @@ class Timer extends React.Component {
     let i = this.state.break;
     if (i > 1) {
       this.setState((state) => ({
-        break: state.break - 1
+        break: state.break - 1,
       }));
     }
     if (this.state.timerType === "Break") {
@@ -94,13 +94,13 @@ class Timer extends React.Component {
       session: 25,
       timerInit: 1500000,
       intervalId: "",
-      timerType: "Session"
+      timerType: "Session",
     }));
     document.getElementById("beep").pause();
     document.getElementById("beep").currentTime = 0;
-     let playbtn = document.getElementById("startbtn");
-      playbtn.classList.remove("fa-pause");
-      playbtn.classList.add("fa-play");
+    let playbtn = document.getElementById("startbtn");
+    playbtn.classList.remove("fa-pause");
+    playbtn.classList.add("fa-play");
   }
   sessionTimer() {
     if (this.state.timerType === "Session") {
@@ -111,7 +111,6 @@ class Timer extends React.Component {
         this.countDown(this.state.timerInit);
       }, 1000);
       this.setState({ intervalId: x });
-      
     } else {
       this.setState((state) => {
         return { timerInit: state.session * 60000, timerType: "Session" };
@@ -132,7 +131,7 @@ class Timer extends React.Component {
       clearInterval(x);
       document.getElementById("time-left").innerHTML = "00:00";
       document.getElementById("beep").play();
-      setTimeout(this.sessionTimer, 10000);
+      setTimeout(this.sessionTimer, 5000);
     }
   };
 
@@ -142,31 +141,29 @@ class Timer extends React.Component {
       x = setInterval(() => {
         this.countDown(this.state.timerInit);
       }, 1000);
-      this.setState({ intervalId: x })
-     playbtn.className ="fa-solid fa-pause";
+      this.setState({ intervalId: x });
+      playbtn.className = "fa-solid fa-pause";
       isPaused = true;
     } else {
       if (isPaused) {
         clearInterval(x);
-        console.log('paused')
-      playbtn.className ="fa-solid fa-play";
-      
+        console.log("paused");
+        playbtn.className = "fa-solid fa-play";
+
         isPaused = false;
       } else {
         x = setInterval(() => {
           this.countDown(this.state.timerInit);
         }, 1000);
         this.setState({ intervalId: x });
-         playbtn.className ="fa-solid fa-pause";
+        playbtn.className = "fa-solid fa-pause";
         isPaused = true;
       }
-      
     }
   }
 
   startTimer() {
     this.controlTimer();
-    
   }
 
   render() {
@@ -174,7 +171,6 @@ class Timer extends React.Component {
       <div>
         <h1>Pomodoro Clock Timer</h1>
         <main className="container">
-          
           <section className="timer-container">
             <div>
               <h2 id="timer-label">{this.state.timerType}</h2>
@@ -182,7 +178,7 @@ class Timer extends React.Component {
                 <h2 id="time-left">
                   {toMinutes_Seconds(this.state.timerInit)}
                 </h2>
-                <section className='buttons'>
+                <section className="buttons">
                   <button id="start_stop" onClick={this.startTimer}>
                     <i id="startbtn" className="fa-solid fa-play"></i>
                   </button>
@@ -194,32 +190,30 @@ class Timer extends React.Component {
             </div>
           </section>
           <section className="controls">
-             <section className="break-container">
-            <h3 id="break-label">Break length</h3>
-            <section className="button-container">
-              <button id="break-increment" onClick={this.incrementBreak}>
-                <i className="fa-solid fa-arrow-up"></i>
-              </button>
-              <h2 id="break-length">{this.state.break}</h2>
-              <button id="break-decrement" onClick={this.decrementBreak}>
-                <i className="fa-solid fa-arrow-down"></i>
-              </button>
-              
+            <section className="break-container">
+              <h3 id="break-label">Break length</h3>
+              <section className="button-container">
+                <button id="break-increment" onClick={this.incrementBreak}>
+                  <i className="fa-solid fa-arrow-up"></i>
+                </button>
+                <h2 id="break-length">{this.state.break}</h2>
+                <button id="break-decrement" onClick={this.decrementBreak}>
+                  <i className="fa-solid fa-arrow-down"></i>
+                </button>
+              </section>
             </section>
-          </section>
-          <section className="session-container">
-            <h3 id="session-label">Session length</h3>
-            <section className="button-container">
-              <button id="session-increment" onClick={this.incrementSession}>
-                <i className="fa-solid fa-arrow-up"></i>
-              </button>
-              <h2 id="session-length">{this.state.session}</h2>
-              <button id="session-decrement" onClick={this.decrementSession}>
-                <i className="fa-solid fa-arrow-down"></i>
-              </button>
+            <section className="session-container">
+              <h3 id="session-label">Session length</h3>
+              <section className="button-container">
+                <button id="session-increment" onClick={this.incrementSession}>
+                  <i className="fa-solid fa-arrow-up"></i>
+                </button>
+                <h2 id="session-length">{this.state.session}</h2>
+                <button id="session-decrement" onClick={this.decrementSession}>
+                  <i className="fa-solid fa-arrow-down"></i>
+                </button>
+              </section>
             </section>
-           
-          </section>
           </section>
         </main>
       </div>
