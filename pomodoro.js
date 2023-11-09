@@ -1,5 +1,5 @@
 // intervall variable
-let x = null;
+let myInterval = null;
 let timerPaused = false;
 
 // function that adds minutes to the current date
@@ -212,7 +212,7 @@ class Timer extends React.Component {
 
   //resets the timer to initial settings
   handleReset() {
-    x = null;
+    myInterval = null;
     clearInterval(this.state.intervalId);
     this.setState((state) => ({
       break: 5,
@@ -233,18 +233,18 @@ class Timer extends React.Component {
       this.setState((state) => {
         return { timerDisplay: state.break * 60000, timerType: "Break" };
       });
-      x = setInterval(() => {
+      myInterval = setInterval(() => {
         this.countDown(this.state.timerDisplay);
       }, 1000);
-      this.setState({ intervalId: x });
+      this.setState({ intervalId: myInterval });
     } else {
       this.setState((state) => {
         return { timerDisplay: state.session * 60000, timerType: "Session" };
       });
-      x = setInterval(() => {
+      myInterval = setInterval(() => {
         this.countDown(this.state.timerDisplay);
       }, 1000);
-      this.setState({ intervalId: x });
+      this.setState({ intervalId: myInterval });
     }
   }
 
@@ -268,7 +268,7 @@ class Timer extends React.Component {
     });
 
     if (this.state.timerDisplay === 0) {
-      clearInterval(x);
+      clearInterval(myInterval);
       this.setState({ timerDisplay: 0 });
       this.audioPlay();
       setTimeout(this.sessionTimer, 5000);
@@ -277,21 +277,21 @@ class Timer extends React.Component {
 
   //manages the starting, pausing, and resuming of the timer by controlling the interval responsible for the countdown
   controlTimer() {
-    if (x === null) {
-      x = setInterval(() => {
+    if (myInterval === null) {
+      myInterval = setInterval(() => {
         this.countDown(this.state.timerDisplay);
       }, 1000);
-      this.setState({ intervalId: x });
+      this.setState({ intervalId: myInterval });
       this.setPause();
     } else {
       if (timerPaused) {
-        clearInterval(x);
+        clearInterval(myInterval);
         this.setPlay();
       } else {
-        x = setInterval(() => {
+        myInterval = setInterval(() => {
           this.countDown(this.state.timerDisplay);
         }, 1000);
-        this.setState({ intervalId: x });
+        this.setState({ intervalId: myInterval });
         this.setPause();
       }
     }
