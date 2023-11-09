@@ -8,20 +8,24 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
     />
+
     <link rel="stylesheet" href="./pomodoro.css" />
   </head>
   <body>
     <div id="root"></div>
-
     <!--Programmed scripts-->
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-
-    <!-- DON'T use babel in production: -->
     <script
-      src="https://unpkg.com/@babel/standalone/babel.min.js"
-      defer
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.production.min.js"
     ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+    ></script>
+
+    <!-- Babel Standalone Production Version -->
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js"></script>
+
     <script src="./pomodoro.js" type="text/babel"></script>
   </body>
 </html>
