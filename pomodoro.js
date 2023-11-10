@@ -33,7 +33,7 @@ class SessionLength extends React.Component {
               id="session-increment"
               onClick={this.props.incrementSession}
             >
-              <i className="fa-solid fa-arrow-up"></i>
+              <i class="fa-solid fa-arrow-up"></i>
             </button>
             <h2 id="session-length">{this.props.session}</h2>
             <button

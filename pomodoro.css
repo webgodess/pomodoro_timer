@@ -33,6 +33,7 @@ body {
 @media only screen and (max-width: 768px) {
   .timer-container {
     max-width: 100%;
+    height: 45%;
   }
 }
 
@@ -59,7 +60,7 @@ button:active {
 }
 
 .fa-solid.fa-arrows-rotate {
-  transition: transform 1.8s;
+  transition: transform 2s;
 }
 
 button#reset:active {
@@ -80,8 +81,8 @@ button#reset:active {
 
 @media only screen and (max-width: 500px) {
   .container {
-    max-width: 100%;
-    border-radius: 1%;
+    max-width: 95%;
+    border-radius: 10%;
   }
 }
 
