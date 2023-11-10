@@ -29,6 +29,7 @@ class SessionLength extends React.Component {
           <h3 id="session-label">Session length</h3>
           <section className="button-container">
             <button
+              title="increase session time"
               id="session-increment"
               onClick={this.props.incrementSession}
             >
@@ -36,6 +37,7 @@ class SessionLength extends React.Component {
             </button>
             <h2 id="session-length">{this.props.session}</h2>
             <button
+              title="decrease session time"
               id="session-decrement"
               onClick={this.props.decrementSession}
             >
@@ -59,11 +61,19 @@ class BreakLength extends React.Component {
         <section className="break-container">
           <h3 id="break-label">Break length</h3>
           <section className="button-container">
-            <button id="break-increment" onClick={this.props.incrementBreak}>
+            <button
+              title="increase break length"
+              id="break-increment"
+              onClick={this.props.incrementBreak}
+            >
               <i className="fa-solid fa-arrow-up"></i>
             </button>
             <h2 id="break-length">{this.props.break}</h2>
-            <button id="break-decrement" onClick={this.props.decrementBreak}>
+            <button
+              title="decrease break length"
+              id="break-decrement"
+              onClick={this.props.decrementBreak}
+            >
               <i className="fa-solid fa-arrow-down"></i>
             </button>
           </section>
@@ -88,14 +98,22 @@ class TimerContainer extends React.Component {
                 {convertToMinutesSeconds(this.props.display)}
               </h2>
               <section className="buttons">
-                <button id="start_stop" onClick={this.props.start}>
+                <button
+                  title="start timer"
+                  id="start_stop"
+                  onClick={this.props.start}
+                >
                   <i
                     id="startbtn"
                     ref={this.props.playref}
                     className="fa-solid fa-play"
                   ></i>
                 </button>
-                <button id="reset" onClick={this.props.reset}>
+                <button
+                  title="reset timer"
+                  id="reset"
+                  onClick={this.props.reset}
+                >
                   <i className="fa-solid fa-arrows-rotate"></i>
                 </button>
               </section>

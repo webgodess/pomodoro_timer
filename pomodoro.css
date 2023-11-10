@@ -1,28 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Baumans&family=Turret+Road:wght@700&display=swap");
 
 body {
-  background: rgb(69, 101, 123);
-  background: -moz-radial-gradient(
-    circle,
-    rgba(69, 101, 123, 1) 50%,
-    rgba(16, 42, 58, 1) 100%
-  );
-  background: -webkit-radial-gradient(
-    circle,
-    rgba(69, 101, 123, 1) 50%,
-    rgba(16, 42, 58, 1) 100%
-  );
-  background: radial-gradient(
-    circle,
-    rgba(69, 101, 123, 1) 50%,
-    rgba(16, 42, 58, 1) 100%
-  );
-
   height: 100%;
   margin: 0;
   background-repeat: no-repeat;
   background-attachment: fixed;
   font-family: "Baumans", sans-serif;
+  background-color: #45657b;
 }
 
 .controls {
@@ -44,8 +28,9 @@ body {
   align-items: center;
   display: flex;
   justify-content: center;
-  border-radius: 50%;
-  box-shadow: 5px 1px 10px #45657b, 2px -2px 14px #123043;
+  background: linear-gradient(145deg, #2b4556, #3b5d74);
+  border-radius: 100%;
+  box-shadow: 9.91px 9.91px 15px #2e4a5c, inset -9.91px -9.91px 80px #38586e;
 }
 
 h1,
@@ -58,7 +43,7 @@ button {
   padding: 10px;
   font-size: 14px;
   border-radius: 10%;
-  background-color: #102a3a;
+  background-color: #2b485b;
 }
 
 button:active {
@@ -77,8 +62,9 @@ button:active {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  border-radius: 50px;
-  box-shadow: 1px 11px 62px #102a3a, -21px 0px 22px #45657b;
+  background: linear-gradient(145deg, #2b4556, #3b5d74);
+  border-radius: 15%;
+  box-shadow: 9.91px 9.91px 15px #2e4a5c, -9.91px -9.91px 15px #38586e;
 }
 
 @media only screen and (max-width: 768px) {
