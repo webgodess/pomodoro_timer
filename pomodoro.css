@@ -1,11 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Baumans&family=Turret+Road:wght@700&display=swap");
-
 body {
   height: 100%;
   margin: 0;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  font-family: "Baumans", sans-serif;
   background-color: #45657b;
 }
 
@@ -33,6 +30,12 @@ body {
   box-shadow: 9.91px 9.91px 15px #2e4a5c, inset -9.91px -9.91px 80px #38586e;
 }
 
+@media only screen and (max-width: 768px) {
+  .timer-container {
+    max-width: 100%;
+  }
+}
+
 h1,
 h2 {
   text-align: center;
@@ -55,6 +58,14 @@ button:active {
   justify-content: space-between;
 }
 
+.fa-solid.fa-arrows-rotate {
+  transition: transform 1.8s;
+}
+
+button#reset:active {
+  transform: rotate(90deg);
+}
+
 .container {
   width: 500px;
   margin: 50px auto;
@@ -67,9 +78,10 @@ button:active {
   box-shadow: 9.91px 9.91px 15px #2e4a5c, -9.91px -9.91px 15px #38586e;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 500px) {
   .container {
     max-width: 100%;
+    border-radius: 1%;
   }
 }
 
