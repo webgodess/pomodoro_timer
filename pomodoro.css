@@ -1,7 +1,14 @@
+:root {
+  --peach: #f29271;
+  --second-color: #ff9f7b;
+  --third-color: #dc8567;
+  --button-color: #c76e5a;
+}
+
 body {
   height: 100%;
   margin: 0;
-  background-color: #f29271;
+  background-color: var(--peach);
 }
 
 .controls {
@@ -23,9 +30,10 @@ body {
   align-items: center;
   display: flex;
   justify-content: center;
-  background: #f29271;
+  background: var(--peach);
   border-radius: 100%;
-  box-shadow: inset 9.98px 9.91px 15px #dc8567, inset -10px -9.98px 15px #ff9f7b;
+  box-shadow: inset 9.98px 9.91px 15px var(--third-color),
+    inset -10px -9.98px 15px var(--second-color);
 }
 
 @media only screen and (max-width: 768px) {
@@ -45,7 +53,7 @@ button {
   padding: 10px;
   font-size: 14px;
   border-radius: 10%;
-  background-color: #c76e5a;
+  background-color: var(--button-color);
 }
 
 button:active {
@@ -72,10 +80,10 @@ button#reset:active {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  background: #f29271;
+  background: var(--peach);
   border-radius: 10%;
-  box-shadow: inset 9.91px 9.91px 15px #dc8567,
-    inset -9.91px -9.91px 15px #ff9f7b;
+  box-shadow: inset 9.91px 9.91px 15px var(--third-color),
+    inset -9.91px -9.91px 15px var(--second-color);
 }
 
 @media only screen and (max-width: 500px) {
@@ -86,5 +94,5 @@ button#reset:active {
 }
 
 #time-left {
-  font-size: 2em;
+  font-size: 32px;
 }
