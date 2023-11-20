@@ -1,9 +1,7 @@
 body {
   height: 100%;
   margin: 0;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-color: #45657b;
+  background-color: #f29271;
 }
 
 .controls {
@@ -25,9 +23,9 @@ body {
   align-items: center;
   display: flex;
   justify-content: center;
-  background: linear-gradient(145deg, #2b4556, #3b5d74);
+  background: #f29271;
   border-radius: 100%;
-  box-shadow: 9.91px 9.91px 15px #2e4a5c, inset -9.91px -9.91px 80px #38586e;
+  box-shadow: inset 9.98px 9.91px 15px #dc8567, inset -10px -9.98px 15px #ff9f7b;
 }
 
 @media only screen and (max-width: 768px) {
@@ -47,7 +45,7 @@ button {
   padding: 10px;
   font-size: 14px;
   border-radius: 10%;
-  background-color: #2b485b;
+  background-color: #c76e5a;
 }
 
 button:active {
@@ -69,14 +67,15 @@ button#reset:active {
 
 .container {
   width: 500px;
-  margin: 50px auto;
-  height: 640px;
+  margin: 30px auto;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  background: linear-gradient(145deg, #2b4556, #3b5d74);
-  border-radius: 15%;
-  box-shadow: 9.91px 9.91px 15px #2e4a5c, -9.91px -9.91px 15px #38586e;
+  background: #f29271;
+  border-radius: 10%;
+  box-shadow: inset 9.91px 9.91px 15px #dc8567,
+    inset -9.91px -9.91px 15px #ff9f7b;
 }
 
 @media only screen and (max-width: 500px) {
