@@ -3,7 +3,7 @@ let myInterval = null;
 let timerPaused = false;
 
 // function that adds minutes to the current date
-const AddMinutesToDate = (date, minutes) => {
+const addMinutesToDate = (date, minutes) => {
   return new Date(date.getTime() + minutes);
 };
 
